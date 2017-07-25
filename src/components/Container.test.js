@@ -1,8 +1,12 @@
-import React, { Component } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import Title from './components/Title'
-import Container from './components/Container'
+import React from 'react'
+import { shallow } from 'enzyme'
+import chai, { expect } from 'chai'
+import chaiEnzyme from 'chai-enzyme'
+import Container from './Container'
+import Title from './Title'
+import RecipeItem from './RecipeItem'
+
+chai.use(chaiEnzyme())
 
 const recipes = [
   {
@@ -25,24 +29,26 @@ const recipes = [
     vegan: false,
     vegetarian: false,
     pescatarian: false,
-  },
-  {
-    title: 'Agedashi Tofu',
-    summary: 'Agedashi Tofu is one of those magical dishes where a few simple ingredients come together in a harmonizing synergy that elevates the dish from humble to divine. It is made with blocks of soft tofu that are coated in a thin layer of potato starch before being lightly fried.',
-    vegan: true,
-    vegetarian: true,
-    pescatarian: false,
-  },
+  }
 ]
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Container recipes={ recipes } />
-      </div>
-    );
-  }
-}
+describe('<Container />', () => {
+  const container = shallow(<Container recipes={recipes} />)
 
-export default App;
+  it('is wrapped in a div with class name "recipes" and "wrapper"', () => {
+    expect(container).to.have.className('wrapper')
+    expect(container).to.have.className('recipes')
+  })
+
+  it('contains a Title', () => {
+    expect(container).to.have.descendants(Title)
+  })
+
+  it('sets the title to "Recipes"', () => {
+    expect(container).to.contain(<Title content="Recipes" />)
+  })
+
+  it('contains all recipes as RecipeItem', () => {
+    expect(container).to.have.exactly(recipes.length).descendants(RecipeItem)
+  })
+})

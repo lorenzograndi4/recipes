@@ -5,6 +5,7 @@ import chaiEnzyme from 'chai-enzyme'
 import ReactDOM from 'react-dom'
 import App from './App'
 import Title from './components/Title'
+import Container from './components/Container'
 
 chai.use(chaiEnzyme())
 
@@ -20,12 +21,8 @@ describe ('<App /', () => {
     expect(app).to.have.tagName('div')
   })
 
-  it ('contains a Title', () => {
-    expect(app).to.have.descendants(Title)
-  })
-
-  it ('sets the title to "All Recipes"', () => {
-    expect(app).to.contain(<Title content="All Recipes" />)
+  it('shows the recipes container', () => {
+    expect(app).to.have.descendants(Container)
   })
 })
 
