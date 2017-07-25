@@ -26,8 +26,13 @@ describe ('<RecipeItem />', () => {
     expect(container.find('h1')).to.have.text(recipe.title)
   })
 
+  // // Mind the use of find in this example
+  // it('shows the carrot when vegetarian', () => {
+  //   expect(container.find('ul > li')).to.have.text('🥕')
+  // })
+
   it('shows the carrot when vegetarian', () => {
-    expect(container.find('ul > li')).to.have.text('🥕')
+    expect(container).to.contain(<img src="vegetarian.svg" alt="vegetarian" />)
   })
 
 })

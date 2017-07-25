@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './App.css'
-import Title from './components/Title'
 import Container from './components/Container'
 
 const recipes = [
@@ -10,7 +8,7 @@ const recipes = [
     summary: 'A traditional dish from Spanish cuisine called tortilla española or tortilla de patatas. It is an omelette made with eggs and potatoes, sometimes also with onion and/or chives or garlic; fried in oil and often served cold as an appetizer.',
     vegan: false,
     vegetarian: true,
-    pescatarian: false,
+    pescatarian: true,
   },
   {
     title: 'Paella',
@@ -32,7 +30,7 @@ const recipes = [
     vegan: true,
     vegetarian: true,
     pescatarian: false,
-  },
+  }
 ]
 
 class App extends Component {
